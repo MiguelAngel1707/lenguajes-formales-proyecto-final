@@ -1,0 +1,17 @@
+1
+S -> aSb e
+T
+e
+ab
+aabb
+aab
+ba
+
+B
+e
+ab
+aabb
+aab
+ba
+
+Q

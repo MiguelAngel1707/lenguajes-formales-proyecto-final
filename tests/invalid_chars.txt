@@ -1,0 +1,12 @@
+3
+S -> S+T T
+T -> T*F F
+F -> (S) i
+i+I
+i$
+$
+i+i$i
+i i
+e
+i
+

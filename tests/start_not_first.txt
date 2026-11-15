@@ -1,0 +1,10 @@
+3
+A -> aA c
+B -> bB d
+S -> AB
+T
+cd
+aacbd
+ab
+
+Q

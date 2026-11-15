@@ -1,2 +1,10 @@
 __pycache__/
 *.pyc
+
+# Archivos intermedios de LaTeX (el PDF entregable es report.pdf en la raiz)
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.synctex.gz
+report/report.pdf

@@ -53,18 +53,46 @@ class Grammar:
             return head + " -> " + EPSILON
         return head + " -> " + "".join(body)
 
+    def only_terminals(self, string):
+        """
+        Devuelve True si todos los caracteres de la cadena son terminales de
+        la gramática. Si no lo son, la cadena no puede ser generada por la
+        gramática (por ejemplo, si trae una mayúscula o el símbolo '$').
+        """
+        for symbol in string:
+            if not self.is_terminal(symbol):
+                return False
+        return True
+
+
+class Node:
+    """
+    Nodo del árbol de derivación (parse tree). Guarda:
+      symbol      el símbolo de la gramática del nodo
+      production  el número de la producción usada (None si es una hoja)
+      children    la lista de hijos, de izquierda a derecha
+      attrs       los valores de los atributos, por ejemplo {'val': 5}
+      number      un número para identificar el nodo al imprimirlo (lo pone el SDD)
+    """
+
+    def __init__(self, symbol):
+        self.symbol = symbol
+        self.production = None
+        self.children = []
+        self.attrs = {}
+        self.number = None
+
 
 def read_line():
     """
     Lee una línea de la entrada estándar y le quita los espacios y saltos
     de línea de los extremos (incluido el '\\r' de los archivos de Windows).
-    Si la entrada se acabó, devuelve una cadena vacía, que el programa
-    trata igual que una línea vacía.
+    Si la entrada se acabó, devuelve None.
     """
     try:
         line = input()
     except EOFError:
-        return ""
+        return None
     return line.strip()
 
 
