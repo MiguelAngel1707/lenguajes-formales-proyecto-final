@@ -139,6 +139,6 @@ We used Claude Code (Anthropic, model Claude Opus 5.5) as a programming assistan
 3. **Drafting of the report and of this README.**
    - It wrote the LaTeX source of the report and this file. The sets, tables and traces of the report are copied from the program's output, and the LR(0) automaton figure was drawn from the output of `python slr1.py`.
    - It installed MiKTeX and compiled the report.
-   - It did not do the hand-worked example of Step 3, which the assignment requires us to do ourselves.
+   - It did not do the hand-worked example of Step 3, which the assignment requires us to do ourselves. It explained Sections 5.1–5.2 with the book's examples, reviewed our drawings against the output of `sdd.py`, pointed out what was missing (the `lexval` of the leaves and the edge `R3.acc -> R3.val`), and then inserted our scanned pages (folder `entrega a mano/`) into the report and typed the edge list and the evaluation order from them.
 
 TODO (group): describe how each member reviewed and studied the code, and confirm that the hand-worked example of Step 3 was done by the group.
