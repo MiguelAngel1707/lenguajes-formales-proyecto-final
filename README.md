@@ -142,5 +142,41 @@ We used Claude Code (Anthropic, model Claude Opus 5.5) as a programming assistan
    - It wrote the LaTeX source of the report and this file. The sets, tables and traces of the report are copied from the program's output, and the LR(0) automaton figure was drawn from the output of `python slr1.py`.
    - It installed MiKTeX and compiled the report.
    - It did not do the hand-worked example of Step 3, which the assignment requires us to do ourselves. It explained Sections 5.1–5.2 with the book's examples, reviewed our drawings against the output of `sdd.py`, pointed out what was missing (the `lexval` of the leaves and the edge `R3.acc -> R3.val`), and then inserted our scanned pages into the report and typed the edge list and the evaluation order from them.
+4. **Study material.**
+   - It made an interactive HTML guide, which is not part of the submission. For each subtask of the project, the guide relates the code to the book and runs the algorithms step by step: FIRST/FOLLOW, LL(1), LR(0)/SLR(1) and the SDD evaluator. Its results are the same as those of our program.
+   - The guide also has comments on the lines of the code and a quiz with questions for the oral presentation.
 
-TODO (group): describe how each member reviewed and studied the code, and confirm that the hand-worked example of Step 3 was done by the group.
+## Work of the group
+
+### Review and study of the code
+
+The three members (Simon Alejandro Vasquez Medina, Miguelangel Calderon Figueredo and Sebastian Urrego Ramirez) reviewed and studied all the code. The goal was that each of us can explain any part of it, trace its algorithms by hand on a new grammar and change it, as the assignment asks for the oral presentation. We did it in three ways.
+
+1. **Code next to the book.** We read each function together with the section, algorithm or figure of the book that it follows. The column "Book reference" of the table in [Files](#files) lists them, and the comment of each function cites it:
+   - `first_follow.py`: the rules for FIRST and FOLLOW of Section 4.4.2.
+   - `ll1.py`: the LL(1) condition of Section 4.4.3, the construction of the table (Algorithm 4.31) and the predictive parser (Algorithm 4.34, Fig. 4.20).
+   - `slr1.py`: CLOSURE (Fig. 4.32), GOTO, the canonical LR(0) collection (Fig. 4.33), the SLR table (Algorithm 4.46) and the LR parser (Algorithm 4.44, Fig. 4.36).
+   - `sdd_rules.py` and `sdd.py`: the format of the rules (Fig. 5.1), the dependency graph (Section 5.2.1) and the topological order (Section 5.2.2).
+2. **Hand traces compared with the program.** We traced the algorithms by hand on grammars and compared our results with the output of the program:
+   - the FIRST and FOLLOW sets, with `python main.py --sets`;
+   - the parsing tables and the moves of the parsers, with `python ll1.py` and `python slr1.py`;
+   - the dependency graph and the evaluation order, with `python sdd.py --step`.
+3. **Interactive guide and quiz.** We studied with the interactive guide described in item 4 above. For each step of an algorithm, it shows the rule of the book that applies, the line of code that runs and the state of the data. Then we answered its quiz of questions for the oral presentation.
+
+### Hand-worked example of Step 3
+
+The group did the example of Step 3 by hand, on paper, for the string `b101`. The scanned pages are Figures 4 to 7 of the report (Section 4.3). These are the three parts and who did each one:
+
+1. **Annotated parse tree** (Figure 4): Simon Alejandro Vasquez Medina. It shows the tree of `b101` with the values of all the attributes of each node, including the `lexval` of the leaves:
+   - `base = 2` in `B`, `N` and the three `R` nodes;
+   - `acc = 1, 2, 5` going down the chain of `R` nodes;
+   - `val = 5` going back up to `S`.
+2. **Dependency graph** (Figure 5, and the list of edges in Figure 7, right): Simon Alejandro Vasquez Medina and Miguelangel Calderon Figueredo.
+   - It has one vertex for each attribute of each node: 20 vertices, the 4 `lexval` of the leaves and 16 attributes of the nonterminals.
+   - It has one edge from each attribute used by a rule to the attribute the rule defines: 21 edges.
+   - It is drawn on top of the parse tree, as in Fig. 5.7 of the book.
+3. **Evaluation order** (Figure 7, left): Miguelangel Calderon Figueredo and Sebastian Urrego Ramirez.
+   - We repeatedly took a vertex with no incoming edges, wrote it down and removed its outgoing edges (Section 5.2.2).
+   - Then we checked that, in each of the 21 edges, the source comes before the target.
+
+Afterwards we compared the three parts with the output of `python sdd.py --step`. The values of the tree, the 21 edges and the evaluation order are the same.
